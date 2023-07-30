@@ -1,0 +1,29 @@
+1.4.3 Ensure authentication required for single user mode
+
+verification:
+    grep -Eq '^root:\$[0-9]' /etc/shadow || echo "root is locked"
+solution:
+    passwd root
+    "and follow the structures"
+
+    ======================================================================
+
+1.5.2 Ensure XD/NX support is enabled
+
+verification:
+    cat /proc/cpuinfo | grep -i PAE
+
+* x64 cpu and kernels have this option enabled by default (Ubuntu 22.04 does not need this configuration)
+
+    ======================================================================
+
+1.8 Ensure updates, patches, and additional security software are installed
+    its just:
+        sudo apt update && sudo apt upgrade
+    ======================================================================
+
+2.1.1 Ensure chargen services are not enabled
+    there is no inetd and xinetd on ubuntu 22.04 with systemd.
+    this CIS instructure belongs to older ubuntu versions where the init process was the main PID
+    
+
